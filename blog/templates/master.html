@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'csshake.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+  <title>{% block title %}{% endblock%}</title>
+
+</head>
+<style>
+  .zoom {
+    transition: transform .3s;
+    /* Animation */
+  }
+
+  .zoom:hover {
+    transform: scale(1.03);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+</style>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="{% static 'Logo.svg' %}" alt="Daneshkar"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'main' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about_us' %}">about us</a>
+          </li>
+
+
+        </ul>
+      
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+  <footer class="bg-dark w-100 text-light text-center py-3 position-fixed bottom-0 opacity-75" style="height: 50px;">
+    <div class="container">
+      <p>&copy; 2024 My Company. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>
