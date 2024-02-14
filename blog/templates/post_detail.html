@@ -1,0 +1,71 @@
+{% extends "master.html" %}
+{% load static %}
+
+
+{% block title %}
+Post
+{% endblock%}
+
+{% block content %}
+
+<div class="container mt-5 rounded-4" style="background-color: bisque;">
+
+    <div class="row d-flex justify-content-center">
+        <div class="card border-success my-3" style="max-width: 40rem;">
+            <div class="small card-header bg-transparent border-success">created at: {{post.created_at}}</div>
+            <div class="card-body text-success">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.body }}</p>
+            </div>
+            <div class="small card-footer bg-transparent border-success">last update: {{post.modified_at}}</div>
+            <small class="opacity-50 position-absolute bottom-0 end-0 m-2">count of comments (active and deactive):
+                <span class="badge rounded-pill bg-danger">{{ post.comment_set.count }}</span></small>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-md-8 col-lg-6 my-3">
+            <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+                <div class="card-body p-4">
+                    <div class="form-outline mb-4">
+                        <form action="{% url 'comment' post.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Author</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm" name="author" required>
+                            </div>
+
+                            <input type="text" id="addANote" name="comment" class="form-control mb-2" required
+                                placeholder="Type comment..." />
+                            <button type="submit" class="btn btn-success">Send Comment</button>
+                        </form>
+
+                    </div>
+                    {% for comment in comments %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <p>{{comment.body}}</p>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center">
+                                    <img src="{% static 'profile.png' %}" alt="avatar" width="25" height="25" />
+                                    <p class="small mb-0 ms-2">{{comment.author}}</p>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+                                    <p class="small text-muted mb-0">date: {{comment.created_at}}</p>
+                                    <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

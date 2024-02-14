@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+{% load static %}
+
+
+{% block title %}
+Posts
+{% endblock%}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="list-group p-3 bg-dark-subtle">
+        <h3 class="m-4">List of Articles:</h3>
+        {% for post in posts %}
+        <a href="{% url 'post_detail' post.id %}"
+            class="list-group-item list-group-item-action my-2 bg-light position-relative">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ post.title }}</h5>
+                <small>created at: {{post.created_at}}</small>
+            </div>
+            <p class="mb-1">{{ post.body }}</p>
+            <small>last update: {{post.modified_at}}</small>
+            <small class="opacity-50 position-absolute bottom-0 end-0 m-2">count of comments (active and deactive):
+                <span class="badge rounded-pill bg-danger">{{ post.comment_set.count }}</span></small>
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
