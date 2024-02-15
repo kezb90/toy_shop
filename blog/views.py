@@ -72,11 +72,3 @@ def comment_view(request, post_id):
         # Redirect to a success page or the same page with a success message
         return redirect(reverse("post_detail", args=[post_id]))
 
-    # If the request method is not POST, handle accordingly (e.g., show the form)
-    # Replace 'your_template_name.html' with your actual template file
-    return render(request, "your_template_name.html")
-    context = {
-        "post": post,
-        "comments": comments,
-    }
-    return render(request, "post_detail.html", context)
