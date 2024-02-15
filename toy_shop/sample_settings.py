@@ -5,3 +5,5 @@ SECRET_KEY = ""
 DEBUG = False
 
 ALLOWED_HOSTS = []
+
+ADMIN_URL = "administrator/"

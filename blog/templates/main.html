@@ -6,8 +6,8 @@ Home
 {% endblock%}
 
 {% block content %}
-<div class="container-lg text-center my-3 bg-warning">
-    <h3 class="section-title">List Of Categories</h3>
+<div class="container-lg text-center my-3 p-3 rounded-1" style="background-color: rgb(206, 221, 240);">
+    <h3 class="section-title">List Of Blog Categories</h3>
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
         {% for category in categories %}
         <div class="col">
@@ -17,7 +17,7 @@ Home
                     <h5 class="card-title">{{category.title}}</h5>
                     <p class="card-text">{{category.description}}</p>
                     <p class="card-text">Number of articles: <span class="badge bg-primary rounded-pill">
-                        {{category.posts.count }}</span></p>
+                            {{category.posts.count }}</span></p>
                     <a href="{% url 'category_posts' category.id %}" class="btn btn-success">
                         View articles
                     </a>
