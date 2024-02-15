@@ -1,11 +1,27 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .models import Category, Post, Comment
+from .serializers import CategorySerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, filters
+from rest_framework import permissions
 
 # Create your views here.
 
 
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.filter(is_active=True).order_by('pk')
+    permission_classes = [permissions.AllowAny]
+    filter_backends = (DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter)
+    
+    def list(self, request, *args, **kwargs):
+        categories = self.queryset
+        return render(request, 'main.html', {'categories': categories})
+
 # Represent landing page
+
 def main(request):
     categories = Category.objects.all()
     context = {"categories": categories}
