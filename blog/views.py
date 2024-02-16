@@ -8,6 +8,7 @@ from rest_framework import permissions
 
 # Create your views here.
 
+
 class GalleryView(generics.ListAPIView):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
@@ -16,23 +17,26 @@ class GalleryView(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         images = self.get_queryset()
         return render(request, self.template_name, {'images': images})
-    
+
+
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
-    
+
+
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.filter(is_active=True).order_by('pk')
     permission_classes = [permissions.AllowAny]
     filter_backends = (DjangoFilterBackend,
                        filters.OrderingFilter, filters.SearchFilter)
-    
+
     def list(self, request, *args, **kwargs):
         categories = self.queryset
         return render(request, 'main.html', {'categories': categories})
 
 # Represent landing page
+
 
 def main(request):
     categories = Category.objects.all()
