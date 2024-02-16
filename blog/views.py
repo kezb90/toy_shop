@@ -10,7 +10,7 @@ from rest_framework import permissions
 
 
 class GalleryView(generics.ListAPIView):
-    queryset = Image.objects.all()
+    queryset = Image.objects.filter(is_active=True)
     serializer_class = ImageSerializer
     template_name = 'gallery.html'
 
