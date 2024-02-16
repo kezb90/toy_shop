@@ -1,12 +1,17 @@
 from django.urls import path, include
 from .views import main, about_us, comment_view, category_posts_view, post_detail
 from rest_framework import routers
-from .views import CategoryViewSet
+from .views import CategoryViewSet, ImageViewSet, GalleryView
 
 category_router = routers.DefaultRouter()
 category_router.register('', CategoryViewSet, )
 
+image_router = routers.DefaultRouter()
+image_router.register(r'images', ImageViewSet)
+
 urlpatterns = [
+    path('gallery/', GalleryView.as_view(), name='gallery'),
+    path('image/', include(image_router.urls)),
     path("category", include(category_router.urls), name='category'),
     path("", main, name="main"),
     path("blog/", main, name="blog"),

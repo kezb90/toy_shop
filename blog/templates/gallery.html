@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+
+{% block content %}
+    <h2>Image Gallery</h2>
+
+    <ul>
+        {% for image in images %}
+            <li>
+                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                <p>{{ image.title }}</p>
+                <p>{{ image.description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

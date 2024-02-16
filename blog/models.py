@@ -47,7 +47,7 @@ class Comment(MyBaseModel):
         return self.author
 
 
-class Image(models.Model):
+class Image(MyBaseModel):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='media_gallery/')
     description = models.TextField(blank=True)

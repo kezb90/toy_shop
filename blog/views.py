@@ -1,14 +1,26 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from .models import Category, Post, Comment
-from .serializers import CategorySerializer
+from .models import Category, Post, Comment, Image
+from .serializers import CategorySerializer, ImageSerializer
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, generics
 from rest_framework import permissions
 
 # Create your views here.
 
+class GalleryView(generics.ListAPIView):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
+    template_name = 'gallery.html'
 
+    def get(self, request, *args, **kwargs):
+        images = self.get_queryset()
+        return render(request, self.template_name, {'images': images})
+    
+class ImageViewSet(viewsets.ModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
+    
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.filter(is_active=True).order_by('pk')

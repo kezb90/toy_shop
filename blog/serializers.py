@@ -1,7 +1,10 @@
 from rest_framework import serializers
-from .models import Category, Post, Comment
+from .models import Category, Post, Comment, Image
 
-
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ['id', 'title', 'image', 'description']
 class CategorySerializer(serializers.ModelSerializer):
     
     class Meta:
