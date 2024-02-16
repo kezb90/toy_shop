@@ -1,15 +1,91 @@
 {% extends 'master.html' %}
 
-{% block content %}
-    <h2>Image Gallery</h2>
+{% block title %}
+Cards Gallery
+{% endblock title %}
 
-    <ul>
-        {% for image in images %}
-            <li>
-                <img src="{{ image.image.url }}" alt="{{ image.title }}">
-                <p>{{ image.title }}</p>
-                <p>{{ image.description }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+{% block style %}
+.gallery-block{
+padding-bottom: 60px;
+padding-top: 60px;
+}
+
+.gallery-block .heading{
+margin-bottom: 50px;
+text-align: center;
+}
+
+.gallery-block .heading h2{
+font-weight: bold;
+font-size: 1.4rem;
+text-transform: uppercase;
+}
+
+.gallery-block.cards-gallery h6 {
+font-size: 17px;
+font-weight: bold;
+}
+
+.gallery-block.cards-gallery .card{
+transition: 0.4s ease;
+}
+
+.gallery-block.cards-gallery .card img {
+box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-block.cards-gallery .card-body {
+text-align: center;
+}
+
+.gallery-block.cards-gallery .card-body p {
+font-size: 15px;
+}
+
+.gallery-block.cards-gallery a {
+color: #212529;
+}
+
+.gallery-block.cards-gallery a:hover {
+text-decoration: none;
+}
+
+.gallery-block.cards-gallery .card {
+margin-bottom: 30px;
+box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 576px) {
+
+.gallery-block .transform-on-hover:hover {
+transform: translateY(-10px) scale(1.02);
+box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
+}
+}
+{% endblock style %}
+{% block content %}
+
+<section class="gallery-block cards-gallery">
+    <div class="container">
+        <div class="heading">
+            <h2>Cards Gallery</h2>
+        </div>
+        <div class="row">
+            {% for image in images %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 transform-on-hover">
+                    <a class="lightbox" href="#">
+                        <img src="{{ image.image.url }}" alt="{{ image.title }}" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h6><a href="#">{{ image.title }}</a></h6>
+                        <p class="text-muted card-text">{{ image.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 {% endblock %}
