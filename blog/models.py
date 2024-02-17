@@ -23,7 +23,7 @@ class Category(MyBaseModel):
         max_length=250, null=False, blank=False, verbose_name="title"
     )
     description = models.TextField(
-        null=False, blank=False, verbose_name="title")
+        null=False, blank=False, verbose_name="description")
 
     def __str__(self):
         return self.title
