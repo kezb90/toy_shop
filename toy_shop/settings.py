@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     
     # MY APPs
-    "blog",
-    'product',
-    'shopping_basket',
+    "blog.apps.BlogConfig",
+    'product.apps.ProductConfig',
+    'shopping_basket.apps.ShoppingBasketConfig',
 ]
 
 MIDDLEWARE = [
