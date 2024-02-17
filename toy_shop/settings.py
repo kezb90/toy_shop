@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     
     # MY APPs
     "blog",
+    'product',
+    'shopping_basket',
 ]
 
 MIDDLEWARE = [
