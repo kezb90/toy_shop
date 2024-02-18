@@ -1,4 +1,6 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+# from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -22,7 +24,7 @@ class Category(MyBaseModel):
     title = models.CharField(
         max_length=250, null=False, blank=False, verbose_name="title"
     )
-    description = models.TextField(
+    description = RichTextField(
         null=False, blank=False, verbose_name="description")
 
     def __str__(self):
@@ -31,7 +33,7 @@ class Category(MyBaseModel):
 
 class Post(MyBaseModel):
     title = models.CharField(max_length=250, null=False, blank=False)
-    body = models.TextField()
+    body = RichTextField()
     categories = models.ManyToManyField("Category", related_name="posts")
 
     def __str__(self):

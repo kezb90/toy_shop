@@ -15,7 +15,7 @@ Post
             <div class="small card-header bg-transparent border-success">created at: {{post.created_at}}</div>
             <div class="card-body text-success">
                 <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">{{ post.body }}</p>
+                <p class="card-text">{{ post.body|safe }}</p>
             </div>
             <div class="small card-footer bg-transparent border-success">last update: {{post.modified_at}}</div>
             <small class="opacity-50 position-absolute bottom-0 end-0 m-2">count of comments (active and deactive):

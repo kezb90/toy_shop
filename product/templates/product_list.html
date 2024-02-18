@@ -15,7 +15,7 @@ Product
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
-                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text">{{product.description|safe}}</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-body-secondary"><a href="">Detail</a></small>

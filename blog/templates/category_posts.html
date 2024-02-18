@@ -19,7 +19,7 @@ Posts
                 <h5 class="mb-1">{{ post.title }}</h5>
                 <small>created at: {{post.created_at}}</small>
             </div>
-            <p class="mb-1">{{ post.body }}</p>
+            <p class="mb-1">{{ post.body|safe }}</p>
             <small>last update: {{post.modified_at}}</small>
             <small class="opacity-50 position-absolute bottom-0 end-0 m-2">count of comments (active and deactive):
                 <span class="badge rounded-pill bg-danger">{{ post.comment_set.count }}</span></small>
