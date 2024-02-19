@@ -1,8 +1,9 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import product_list
+from .views import product_list, product_detail
 
-app_name = 'product'
+app_name = "product"
 urlpatterns = [
-    path('product_list/', product_list, name='product-list')
+    path("detail/<int:product_id>", product_detail, name="detail"),
+    path("product_list/", product_list, name="product-list"),
 ]
