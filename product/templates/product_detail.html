@@ -1,0 +1,45 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Product
+{% endblock%}
+
+{% block content %}
+<div class="container-lg text-center my-3 p-3 rounded-1" style="background-color: rgb(206, 221, 240);">
+    <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-1 g-4">
+
+    </div>
+</div>
+
+
+<div class="product-stock">
+    <label for="stock">Stock:</label>
+    <div class="stock-controls">
+        <button id="decrease-btn">-</button>
+        <input type="text" id="stock" value="0" readonly>
+        <button id="increase-btn">+</button>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const stockField = document.getElementById('stock');
+        const increaseBtn = document.getElementById('increase-btn');
+        const decreaseBtn = document.getElementById('decrease-btn');
+
+        increaseBtn.addEventListener('click', function () {
+            let currentValue = parseInt(stockField.value, 10);
+            stockField.value = currentValue + 1;
+        });
+
+        decreaseBtn.addEventListener('click', function () {
+            let currentValue = parseInt(stockField.value, 10);
+            if (currentValue > 0) {
+                stockField.value = currentValue - 1;
+            }
+        });
+    });
+</script>
+{% endblock %}
