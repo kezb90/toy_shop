@@ -11,8 +11,8 @@
 
 </head>
 <style>
-{% block style %}
-{% endblock style %}
+  {% block style %}
+  {% endblock style %}
 
   .zoom {
     transition: transform .3s;
@@ -52,11 +52,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'product:product-list' %}">product</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'shopping_basket:view_cart' %}">basket</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">{{user.username}}</a>
           </li>
-
           <li class="nav-item position-absolute end-0">
             <a class="nav-link" href="/administrator">Admin</a>
           </li>
