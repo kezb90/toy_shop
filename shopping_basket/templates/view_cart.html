@@ -2,11 +2,36 @@
 {% extends "master.html" %}
 
 {% block content %}
-<h1>Shopping Cart</h1>
-
-{% for item in cart_items %}
-<p>{{ item.product.name }} - Quantity: {{ item.quantity }}</p>
-{% endfor %}
-
-<p>Total Price: ${{ total_price }}</p>
+<div class="container-sm">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Unit proce</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sum</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.product.name }}</td>
+                <td>${{ item.unit_price}}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.sum }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="table-info">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>Total Price:</strong></td>
+                <td><strong>${{ total_price }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<a href="{% url 'shopping_basket:clear-cart' %}">Clear Buying Basket</a>
 {% endblock content %}

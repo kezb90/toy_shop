@@ -7,7 +7,9 @@ def add_to_cart(request, product_id):
     cart = Cart(request)
     product = Product.objects.get(pk=product_id)
     cart.add_product(product_id, quantity=1)
-    return redirect("shopping_basket:view_cart")  # Redirect to your product list or wherever you want after adding to the cart
+    return redirect(
+        "shopping_basket:view_cart"
+    )  # Redirect to your product list or wherever you want after adding to the cart
 
 
 def view_cart(request):
@@ -16,12 +18,35 @@ def view_cart(request):
     total_price = 0
 
     for product_id, item in cart.cart.items():
-        product = Product.objects.get(pk=product_id)
-        total_price += product.price * item["quantity"]
-        cart_items.append({"product": product, "quantity": item["quantity"]})
+        try:
+            product = Product.objects.get(pk=product_id)
+            total_price += product.price * item["quantity"]
+            cart_items.append(
+                {
+                    "product": product,
+                    "quantity": item["quantity"],
+                    "unit_price": product.price,
+                    "sum": product.price * item["quantity"],
+                }
+            )
+        except Product.DoesNotExist:
+            print(cart.cart)
+            cart.remove_product(product_id)
+            cart.save()
+            break
+        except TypeError:
+            cart.remove_product(product_id)
+            cart.save()
+            break
 
     return render(
         request,
         "view_cart.html",
         {"cart_items": cart_items, "total_price": total_price},
     )
+
+
+def clear_cart(request):
+    cart = Cart(request)
+    cart.clear()
+    return render(request, "view_cart.html")
