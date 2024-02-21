@@ -31,22 +31,19 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
     # TrustedApps
-    'rest_framework',
-    'django_filters',
-    'rest_framework_simplejwt',
-    
-    
+    "rest_framework",
+    "django_filters",
+    "rest_framework_simplejwt",
     # MY APPs
     "blog.apps.BlogConfig",
-    'product.apps.ProductConfig',
-    'shopping_basket.apps.ShoppingBasketConfig',
-    'peyment.apps.PeymentConfig',
-    
+    "product.apps.ProductConfig",
+    "shopping_basket.apps.ShoppingBasketConfig",
+    "peyment.apps.PeymentConfig",
+    "accounts.apps.AccountsConfig",
     # ThirdpartyApp
-    'ckeditor',
-    'ckeditor_uploader'
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 MIDDLEWARE = [
@@ -65,7 +62,7 @@ ROOT_URLCONF = "toy_shop.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -132,13 +129,13 @@ STATIC_ROOT = BASE_DIR / "productionfiles"
 # Set global static directoy
 STATICFILES_DIRS = [BASE_DIR / "globalstaticfiles"]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 CKEDITOR_UPLOAD_PATH = "ck_uploads/"
 CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
+    "default": {
+        "toolbar": "full",
     },
 }
 # Default primary key field type
@@ -149,7 +146,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ]
 }

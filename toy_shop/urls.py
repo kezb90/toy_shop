@@ -23,13 +23,16 @@ from django.conf import settings
 
 urlpatterns = (
     [
-        path(settings.ADMIN_URL, admin.site.urls, name='admin'),
-        path("", include("blog.urls")),
-        path("product/", include("product.urls")),
-        path("shopping_basket/", include("shopping_basket.urls")),
-        path("peyment/", include("peyment.urls")),
-        path('api-auth/', include('rest_framework.urls')),
-        path('ckeditor/', include('ckeditor_uploader.urls')),
+        path(settings.ADMIN_URL, admin.site.urls, name="admin"),
+        path("", include("blog.urls", namespace="blog")),
+        path("product/", include("product.urls", namespace="product")),
+        path(
+            "shopping_basket/",
+            include("shopping_basket.urls", namespace="shopping_basket"),
+        ),
+        path("peyment/", include("peyment.urls", namespace="peyment")),
+        path("api-auth/", include("rest_framework.urls")),
+        path("ckeditor/", include("ckeditor_uploader.urls")),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
