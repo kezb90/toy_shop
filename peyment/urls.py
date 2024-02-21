@@ -1,6 +1,4 @@
 from django.urls import path, include
 
-app_name = 'peyment'
-urlpatterns = [
-    
-]
+app_name = "peyment"
+urlpatterns = []
