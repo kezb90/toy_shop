@@ -2,6 +2,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from blog.models import MyBaseModel
 from django.db.models import F, Max
+
 # Create your models here.
 
 
@@ -21,24 +22,30 @@ class Product(MyBaseModel):
 
     def __str__(self):
         return self.name
+
     @property
     def price(self):
-        last_price = self.prices.aggregate(last_created=Max('created_at'))['last_created']
+        last_price = self.prices.aggregate(last_created=Max("created_at"))[
+            "last_created"
+        ]
         if last_price:
             return self.prices.filter(created_at=last_price).first().amount
         return None
-        
+
 
 class Price(MyBaseModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prices')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="prices"
+    )
     amount = models.PositiveIntegerField(null=False, blank=False)
-    
+
     class Meta:
-        ordering = ['-created_at']
-    
+        ordering = ["-created_at"]
+
     def __str__(self):
         return self.product.name
-    
+
+
 class ProductImage(MyBaseModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="product_images/")
