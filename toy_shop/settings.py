@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "blog.apps.BlogConfig",
     'product.apps.ProductConfig',
     'shopping_basket.apps.ShoppingBasketConfig',
+    'peyment.apps.PeymentConfig',
     
     # ThirdpartyApp
     'ckeditor',

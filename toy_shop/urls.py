@@ -27,6 +27,7 @@ urlpatterns = (
         path("", include("blog.urls")),
         path("product/", include("product.urls")),
         path("shopping_basket/", include("shopping_basket.urls")),
+        path("peyment/", include("peyment.urls")),
         path('api-auth/', include('rest_framework.urls')),
         path('ckeditor/', include('ckeditor_uploader.urls')),
     ]
