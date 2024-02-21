@@ -18,13 +18,13 @@ Product
                     <p class="card-text">{{product.description|safe}}</p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary"><a href="{% url 'product:detail' product.id %}">Detail</a></small>
+                    <small class="text-body-secondary"><a href="{% url 'product:detail' product.id %}" class="btn btn-info">Detail</a></small>
                     <hr>
                     <small class="text-body-secondary">in stock: {{product.stock}}</small>
                     <hr>
                     <small class="text-body-secondary">Price: {{product.price}}$</small>
                     <hr>
-                    <small class="text-body"><a href="{% url 'shopping_basket:add_to_cart' product.id%}">Add to
+                    <small class="text-body"><a href="{% url 'shopping_basket:add_to_cart' product.id%}" class="btn btn-success">Add to
                             cart</a></small>
                 </div>
             </div>
