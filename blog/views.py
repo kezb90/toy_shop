@@ -12,11 +12,11 @@ from rest_framework import permissions
 class GalleryView(generics.ListAPIView):
     queryset = Image.objects.filter(is_active=True)
     serializer_class = ImageSerializer
-    template_name = 'gallery.html'
+    template_name = "gallery.html"
 
     def get(self, request, *args, **kwargs):
         images = self.get_queryset()
-        return render(request, self.template_name, {'images': images})
+        return render(request, self.template_name, {"images": images})
 
 
 class ImageViewSet(viewsets.ModelViewSet):
@@ -26,14 +26,18 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CategorySerializer
-    queryset = Category.objects.filter(is_active=True).order_by('pk')
+    queryset = Category.objects.filter(is_active=True).order_by("pk")
     permission_classes = [permissions.AllowAny]
-    filter_backends = (DjangoFilterBackend,
-                       filters.OrderingFilter, filters.SearchFilter)
+    filter_backends = (
+        DjangoFilterBackend,
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    )
 
     def list(self, request, *args, **kwargs):
         categories = self.queryset
-        return render(request, 'main.html', {'categories': categories})
+        return render(request, "main.html", {"categories": categories})
+
 
 # Represent landing page
 
@@ -64,8 +68,7 @@ def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     # This fetches all comments associated with the post
     # comments = post.comment_set.filter(is_active=True)
-    comments = Comment.objects.filter(
-        post=post, is_active=True).order_by("-created_at")
+    comments = Comment.objects.filter(post=post, is_active=True).order_by("-created_at")
     context = {
         "post": post,
         "comments": comments,
@@ -78,8 +81,7 @@ def search_view(request):
     query = request.GET.get("q")
     if query or query == "":
         # Perform a simple case-insensitive search on the Post title and body
-        posts = Post.objects.filter(
-            is_active=True, title__icontains=str(query))
+        posts = Post.objects.filter(is_active=True, title__icontains=str(query))
 
     else:
         posts = []
