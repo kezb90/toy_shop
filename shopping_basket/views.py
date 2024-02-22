@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from .cart import Cart
 from product.models import Product
+from django.contrib import messages
 
 
 def add_to_cart(request, product_id):
     cart = Cart(request)
     product = Product.objects.get(pk=product_id)
     cart.add_product(product_id, quantity=1)
+    messages.success(request, "\'{}\' added to the Basket successfully!".format(product.name))
     return redirect(
         "shopping_basket:view_cart"
     )  # Redirect to your product list or wherever you want after adding to the cart
