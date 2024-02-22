@@ -3,5 +3,5 @@ from .views import peyment
 
 app_name = "peyment"
 urlpatterns = [
-    path('peyment_page/', peyment, name='payment-page'),
+    path("peyment_page/", peyment, name="payment-page"),
 ]
