@@ -58,9 +58,21 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'peyment:payment-page' %}">Peyment</a>
           </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">{{user.username}}</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:login' %}">login</a>
+          </li>
+          {% endif %}
+
+
           <li class="nav-item position-absolute end-0">
             <a class="nav-link" href="/administrator">Admin</a>
           </li>
@@ -72,7 +84,7 @@
 
   {% block content %}
   {% endblock %}
-
+  {% include 'message.html' %}
   <!-- <footer class="bg-dark w-100 text-light text-center py-3 position-fixed bottom-0 opacity-75" style="height: 50px;">
     <div class="container">
       <p>&copy; 2024 My Company. All rights reserved.</p>
