@@ -11,14 +11,15 @@ Peyment
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2">
 
         <div class="col">
-            <a href="" class="btn btn-warning">Unsuccessful peyment</a>
+            <a href="{% url 'peyment:resault' 0 %}" class="btn btn-warning">Unsuccessful peyment</a>
         </div>
         <div class="col">
-            <a href="" class="btn btn-success">Successful peyment</a>
+            <a href="{% url 'peyment:resault' 1 %}" class="btn btn-success">Successful peyment</a>
         </div>
         <div class="col m-auto">
             <h4>Total Price:{{total_price}}</h4>
         </div>
     </div>
+
 </div>
 {% endblock %}
