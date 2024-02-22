@@ -18,7 +18,7 @@ Home
                     <p class="card-text">{{category.description|safe}}</p>
                     <p class="card-text">Number of articles: <span class="badge bg-primary rounded-pill">
                             {{category.posts.count }}</span></p>
-                    <a href="{% url 'category_posts' category.id %}" class="btn btn-success">
+                    <a href="{% url 'blog:category_posts' category.id %}" class="btn btn-success">
                         View articles
                     </a>
 
