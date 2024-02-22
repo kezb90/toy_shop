@@ -1,0 +1,59 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Login
+{% endblock%}
+
+{% block content %}
+<div class="container-lg text-center my-3 p-3 rounded-1" style="background-color: rgb(206, 221, 240);">
+    <h3 class="section-title">Login</h3>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col m-auto">
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <!-- <div class="form-floating mb-3">
+                    <input type="text" name="user_name" class="form-control" id="id_user_name" placeholder="user name"
+                        maxlength="50" required>
+                    <label for="id_user_name">User Name</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="text" name="first_name" class="form-control" id="id_first_name" placeholder="first name"
+                        maxlength="50" required>
+                    <label for="id_first_name">First Name</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="text" name="last_name" class="form-control" id="id_last_name" placeholder="last name"
+                        maxlength="50" required>
+                    <label for="id_last_name">Last Name</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="id_email" placeholder="name@example.com"
+                        maxlength="50" required>
+                    <label for="id_email">Email address</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="password" name="password_1" class="form-control" id="id_password_1" placeholder="Password" maxlength="50"
+                        required>
+                    <label for="id_password_1">Password</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="password" name="password_2" class="form-control" id="id_password_2"
+                        placeholder="Rewrited Password" maxlength="50" required>
+                    <label for="id_password_2">Rewrited Password</label>
+                </div> -->
+
+                <button type="submit" class="btn btn-success mb-3">login</button>
+            </form>
+            <a href="{% url 'accounts:register' %}" class="btn btn-primary">Create Account</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -25,6 +25,7 @@ urlpatterns = (
     [
         path(settings.ADMIN_URL, admin.site.urls, name="admin"),
         path("", include("blog.urls", namespace="blog")),
+        path("accounts/", include("accounts.urls", namespace="accounts")),
         path("product/", include("product.urls", namespace="product")),
         path(
             "shopping_basket/",
