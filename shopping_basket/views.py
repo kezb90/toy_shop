@@ -8,7 +8,9 @@ def add_to_cart(request, product_id):
     cart = Cart(request)
     product = Product.objects.get(pk=product_id)
     cart.add_product(product_id, quantity=1)
-    messages.success(request, "\'{}\' added to the Basket successfully!".format(product.name))
+    messages.success(
+        request, "'{}' added to the Basket successfully!".format(product.name)
+    )
     return redirect(
         "shopping_basket:view_cart"
     )  # Redirect to your product list or wherever you want after adding to the cart
@@ -51,4 +53,5 @@ def view_cart(request):
 def clear_cart(request):
     cart = Cart(request)
     cart.clear()
+    messages.success(request, "Buying Basket Successfully Cleared!")
     return render(request, "view_cart.html")

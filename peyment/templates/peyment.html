@@ -8,8 +8,17 @@ Peyment
 {% block content %}
 <div class="container-lg text-center my-3 p-3 rounded-1" style="background-color: rgb(206, 221, 240);">
     <h3 class="section-title">Peyment</h3>
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
-        
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2">
+
+        <div class="col">
+            <a href="" class="btn btn-warning">Unsuccessful peyment</a>
+        </div>
+        <div class="col">
+            <a href="" class="btn btn-success">Successful peyment</a>
+        </div>
+        <div class="col m-auto">
+            <h4>Total Price:{{total_price}}</h4>
+        </div>
     </div>
 </div>
 {% endblock %}

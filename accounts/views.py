@@ -21,7 +21,7 @@ def user_register(request):
                 last_name=data["last_name"],
                 password=data["password_2"],
             )
-            messages.success(request,"Account Created Successfully!")
+            messages.success(request, "Account Created Successfully!")
             return redirect("blog:main")
         else:
             # Form is not valid, inspect errors
@@ -65,7 +65,7 @@ def login_view(request):
             # Form is not valid, inspect errors
             print("Form is not valid")
             print(form.errors)  # This will print a dictionary of errors
-            messages.warning(request,"Enter a valid information!")
+            messages.warning(request, "Enter a valid information!")
             return redirect("accounts:login")
 
     elif request.method == "GET":
