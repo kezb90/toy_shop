@@ -34,10 +34,11 @@ def peyment(request):
     context = {"cart_items": cart_items, "total_price": total_price}
     return render(request, "peyment.html", context)
 
+
 def resault(request, is_paid):
     if is_paid == 1:
-        context = {'status_code':1}
-        return render(request,'resault.html', context)
-    else :
-        context = {'status_code':0}
-        return render(request,'resault.html', context)
+        context = {"status_code": 1}
+        return render(request, "resault.html", context)
+    else:
+        context = {"status_code": 0}
+        return render(request, "resault.html", context)
