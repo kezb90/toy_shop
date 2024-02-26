@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Product Not Found
+{% endblock%}
+
+{% block content %}
+<div class="container-lg text-center my-3 p-3 rounded-1" style="background-color: rgb(206, 221, 240);">
+    <h3 class="section-title">Product Not Found</h3>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1">
+        <div class="col text-center">
+            <div class="alert alert-success m-auto" role="alert">
+                <p>Product {{product_id}} Not Found! Please Choose Another Product!</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
