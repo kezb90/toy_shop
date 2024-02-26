@@ -56,6 +56,7 @@ def create_order(request):
         order = Order.objects.create(
             user=request.user,  # Assuming you have authentication
             status="pending",  # Set the appropriate status
+            is_paid=False,
         )
         # Save the order
         order.save()
@@ -64,7 +65,6 @@ def create_order(request):
             product = Product.objects.get(pk=product_id)
             quantity = item["quantity"]
 
-            
             # Create OrderItem
             order_item = OrderItem.objects.create(
                 order=order,  # You will update this with the actual order instance
@@ -77,5 +77,4 @@ def create_order(request):
             order_item.save()
 
             # Clear the cart
-        cart.clear()
         return redirect("peyment:payment-page")  # Redirect to a peyment page
