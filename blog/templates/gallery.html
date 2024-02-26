@@ -79,7 +79,7 @@ box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
                     </a>
                     <div class="card-body">
                         <h6><a href="#">{{ image.title }}</a></h6>
-                        <p class="text-muted card-text">{{ image.description }}</p>
+                        <p class="text-muted card-text">{{ image.description|safe }}</p>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 {% extends "master.html" %}
 {% load static %}
 
-
 {% block title %}
 Post
 {% endblock%}
@@ -28,7 +27,7 @@ Post
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                 <div class="card-body p-4">
                     <div class="form-outline mb-4">
-                        <form action="{% url 'comment' post.id %}" method="post">
+                        <form action="{% url 'blog:comment' post.id %}" method="post">
                             {% csrf_token %}
                             <div class="input-group input-group-sm mb-1">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Author</span>

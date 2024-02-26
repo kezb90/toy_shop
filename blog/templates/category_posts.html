@@ -13,7 +13,7 @@ Posts
     <div class="list-group p-3 bg-dark-subtle">
         <h3 class="m-4">List of Articles:</h3>
         {% for post in posts %}
-        <a href="{% url 'post_detail' post.id %}"
+        <a href="{% url 'blog:post_detail' post.id %}"
             class="list-group-item list-group-item-action my-2 bg-light position-relative">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ post.title }}</h5>
