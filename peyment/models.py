@@ -8,7 +8,7 @@ class Order(MyBaseModel):
     # Relationship with the user who placed the order
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
     # items = models.ManyToManyField("OrderItem", related_name="related_order")
-
+    is_paid = models.BooleanField(default=False, null=False, blank=False)
     # Order status choices
     ORDER_STATUS_CHOICES = [
         ("pending", "Pending"),
