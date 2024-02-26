@@ -46,10 +46,28 @@ class Price(MyBaseModel):
         return self.product.name
 
 
-class ProductImage(MyBaseModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+class Image(MyBaseModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
+    title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="product_images/")
-    alt = models.CharField(max_length=150, blank=True, null=True)
+    description = RichTextField()
 
     def __str__(self):
-        return self.alt
+        return self.title
+class Video(MyBaseModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="videos")
+    title = models.CharField(max_length=255)
+    video_file = models.FileField(upload_to="product_videos/")
+    description = RichTextField()
+
+    def __str__(self):
+        return self.title
+
+class Audio(MyBaseModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="audios")
+    title = models.CharField(max_length=255)
+    audio_file = models.FileField(upload_to="product_audios/")
+    description = RichTextField()
+
+    def __str__(self):
+        return self.title

@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.contrib.admin import register
-from .models import Product, Category, Price, ProductImage
+from .models import Product, Category, Price
 
+class ProductInline(admin.StackedInline):
+    model = Product
+    extra = 1
 
 @register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -16,14 +19,14 @@ class ProductAdmin(admin.ModelAdmin):
     )
     list_display_links = ("id", "name")
     search_fields = ("name", "description")
-
+    
 
 @register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "description")
     list_display_links = ("id", "name")
     search_fields = ("name", "description")
-
+    # inlines = [ProductInline]
 
 @register(Price)
 class PriceAdmin(admin.ModelAdmin):
