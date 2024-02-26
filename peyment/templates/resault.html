@@ -15,10 +15,16 @@ Peyment Status
 
             <div class="alert alert-danger m-auto" role="alert">
                 <p>Sorry! You Have An Unsuccessful Payment!</p>
+                <p>{{total_price}}</p>
+                <p>{{is_paid}}</p>
+                <p>{{status}}</p>
             </div>
             {% else %}
             <div class="alert alert-success m-auto" role="alert">
                 <p>Your payment was successful!</p>
+                <p>total_price: ${{total_price}}</p>
+                <p>is_paid: {{is_paid}}</p>
+                <p>status: {{status}}</p>
             </div>
 
             {% endif %}

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from shopping_basket.cart import Cart
 from product.models import Product
 from .models import Order, OrderItem
@@ -8,44 +9,34 @@ from shopping_basket.cart import Cart
 # Create your views here.
 
 
-def peyment(request):
+def peyment(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    total_price = order.total_price
+    order_items = order.order_items.all()
 
-    cart = Cart(request)
-    cart_items = []
-    total_price = 0
-
-    for product_id, item in cart.cart.items():
-        try:
-            product = Product.objects.get(pk=product_id)
-            total_price += product.price * item["quantity"]
-            cart_items.append(
-                {
-                    "product": product,
-                    "quantity": item["quantity"],
-                    "unit_price": product.price,
-                    "sum": product.price * item["quantity"],
-                }
-            )
-        except Product.DoesNotExist:
-            print(cart.cart)
-            cart.remove_product(product_id)
-            cart.save()
-            break
-        except TypeError:
-            cart.remove_product(product_id)
-            cart.save()
-            break
-    context = {"cart_items": cart_items, "total_price": total_price}
+    context = {
+        "total_price": total_price,
+        "order_id": order.pk,
+        "user_name": order.user.username,
+        "order_items": order_items,
+    }
     return render(request, "peyment.html", context)
 
 
-def resault(request, is_paid):
+def resault(request, is_paid, order_id):
+    order = get_object_or_404(Order,pk=order_id)
     if is_paid == 1:
-        context = {"status_code": 1}
-        return render(request, "resault.html", context)
+        order.is_paid = True
+        order.status = 'pending'
+        order.save()
+        
     else:
-        context = {"status_code": 0}
-        return render(request, "resault.html", context)
+        order.is_paid = False
+        order.status = 'failed'
+        order.save()
+        
+    context = {"status": order.status, 'is_paid':order.is_paid, 'total_price':order.total_price, }
+    return render(request, "resault.html", context)
 
 
 def create_order(request):
@@ -55,7 +46,7 @@ def create_order(request):
         # Create order
         order = Order.objects.create(
             user=request.user,  # Assuming you have authentication
-            status="pending",  # Set the appropriate status
+            status="checkout",  # Set the appropriate status
             is_paid=False,
         )
         # Save the order
@@ -75,6 +66,12 @@ def create_order(request):
             # You may want to update additional fields such as shipping address, payment method, etc.
             # Save the order_item
             order_item.save()
+        
+        # Clear the session for cart
+        cart.clear()
 
-            # Clear the cart
-        return redirect("peyment:payment-page")  # Redirect to a peyment page
+        # Construct the URL for the payment page
+        payment_page_url = reverse('peyment:payment-page', args=[order.pk])
+
+        # Redirect to the payment page
+        return redirect(payment_page_url)

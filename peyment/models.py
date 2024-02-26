@@ -7,10 +7,11 @@ from django.contrib.auth.models import User
 class Order(MyBaseModel):
     # Relationship with the user who placed the order
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
-    # items = models.ManyToManyField("OrderItem", related_name="related_order")
     is_paid = models.BooleanField(default=False, null=False, blank=False)
     # Order status choices
     ORDER_STATUS_CHOICES = [
+        ("checkout", "checkout"),
+        ("failed", "failed"),
         ("pending", "Pending"),
         ("processing", "Processing"),
         ("shipped", "Shipped"),
@@ -41,7 +42,7 @@ class Order(MyBaseModel):
     # Additional fields, if needed, such as shipping address, payment method, etc.
 
     def __str__(self):
-        return f"Order #{self.id} - {self.user.username}"
+        return f"Order #{self.pk} - {self.user.username}"
 
 
 class OrderItem(MyBaseModel):
@@ -60,4 +61,4 @@ class OrderItem(MyBaseModel):
         return self.product.price * self.quantity
 
     def __str__(self):
-        return f"Item #{self.id} - {self.product.name} in Order #{self.order.id}"
+        return f"Item #{self.pk} - {self.product.name} in Order #{self.order.pk}"

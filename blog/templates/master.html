@@ -55,9 +55,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'shopping_basket:view_cart' %}">Basket</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'peyment:payment-page' %}">Peyment</a>
-          </li>
+          
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
