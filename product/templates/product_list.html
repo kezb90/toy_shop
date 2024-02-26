@@ -12,20 +12,22 @@ Product
         {% for product in products %}
         <div class="col">
             <div class="card">
-                <!-- <img src="..."  alt="..."> -->
-                <!-- <img src="{{ image.image.url }}" class="card-img-top"alt="{{ image.title }}"> -->
+                {% if product.images.first %}
+                    <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="{{ product.images.first.title }}">
+                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text">{{product.description|safe}}</p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary"><a href="{% url 'product:detail' product.id %}" class="btn btn-info">Detail</a></small>
-                    <hr>
+                    <!-- <small class="text-body-secondary"><a href="#" class="btn btn-info"></a></small> -->
+                    <!-- <hr> -->
                     <small class="text-body-secondary">in stock: {{product.stock}}</small>
                     <hr>
                     <small class="text-body-secondary">Price: {{product.price}}$</small>
                     <hr>
-                    <small class="text-body"><a href="{% url 'shopping_basket:add_to_cart' product.id%}" class="btn btn-success">Add to
+                    <small class="text-body"><a href="{% url 'shopping_basket:add_to_cart' product.id%}"
+                            class="btn btn-success">Add to
                             cart</a></small>
                 </div>
             </div>

@@ -1,7 +1,8 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 from blog.models import MyBaseModel
-from django.db.models import F, Max
+from django.db.models import Max
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -71,3 +72,11 @@ class Audio(MyBaseModel):
 
     def __str__(self):
         return self.title
+
+class Comment(MyBaseModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.product.name}"
