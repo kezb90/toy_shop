@@ -7,3 +7,5 @@ DEBUG = False
 ALLOWED_HOSTS = []
 
 ADMIN_URL = "administrator/"
+
+CORS_ALLOW_ALL_ORIGINS: True
