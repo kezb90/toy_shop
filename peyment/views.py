@@ -24,18 +24,22 @@ def peyment(request, order_id):
 
 
 def resault(request, is_paid, order_id):
-    order = get_object_or_404(Order,pk=order_id)
+    order = get_object_or_404(Order, pk=order_id)
     if is_paid == 1:
         order.is_paid = True
-        order.status = 'pending'
+        order.status = "pending"
         order.save()
-        
+
     else:
         order.is_paid = False
-        order.status = 'failed'
+        order.status = "failed"
         order.save()
-        
-    context = {"status": order.status, 'is_paid':order.is_paid, 'total_price':order.total_price, }
+
+    context = {
+        "status": order.status,
+        "is_paid": order.is_paid,
+        "total_price": order.total_price,
+    }
     return render(request, "resault.html", context)
 
 
@@ -66,12 +70,12 @@ def create_order(request):
             # You may want to update additional fields such as shipping address, payment method, etc.
             # Save the order_item
             order_item.save()
-        
+
         # Clear the session for cart
         cart.clear()
 
         # Construct the URL for the payment page
-        payment_page_url = reverse('peyment:payment-page', args=[order.pk])
+        payment_page_url = reverse("peyment:payment-page", args=[order.pk])
 
         # Redirect to the payment page
         return redirect(payment_page_url)

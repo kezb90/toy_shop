@@ -3,9 +3,11 @@ from django.contrib.admin import register
 
 from .models import Order, OrderItem
 
+
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 1
+
 
 @register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -43,5 +45,3 @@ class OrderItemAdmin(admin.ModelAdmin):
         "product__name",
         "order__id",
     )
-    
-
