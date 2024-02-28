@@ -156,7 +156,7 @@ REST_FRAMEWORK = {
         else ("rest_framework_simplejwt.authentication.JWTAuthentication",)
     ),
     "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated",
         # Add other permission classes as needed
     ),
 }
