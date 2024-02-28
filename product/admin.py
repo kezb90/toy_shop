@@ -13,6 +13,11 @@ class ProductInline(admin.StackedInline):
     extra = 1
 
 
+class PriceInline(admin.StackedInline):
+    model = Price
+    extra = 1
+
+
 @register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -26,7 +31,7 @@ class ProductAdmin(admin.ModelAdmin):
     )
     list_display_links = ("id", "name")
     search_fields = ("name", "description")
-    inlines = [ImageInline]
+    inlines = [PriceInline, ImageInline]
 
 
 @register(Category)

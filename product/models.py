@@ -18,7 +18,9 @@ class Category(MyBaseModel):
 class Product(MyBaseModel):
     name = models.CharField(max_length=255)
     description = RichTextField(blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name="products"
+    )
     stock = models.PositiveIntegerField(default=0)
 
     def __str__(self):
