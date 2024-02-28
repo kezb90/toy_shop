@@ -5,8 +5,13 @@ from .serializers import CategorySerializer, ImageSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, generics
 from rest_framework import permissions
+from rest_framework import generics
+from rest_framework import permissions
 
-# Create your views here.
+
+class CategoryListAPIView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class GalleryView(generics.ListAPIView):
@@ -40,6 +45,12 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 # Represent landing page
+# @api_view(['GET'])
+# def main(request):
+#     categories = Category.objects.all()
+#     serializer = CategorySerializer(categories, many=True)
+#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+#     return Response(serializer.data)
 
 
 def main(request):
