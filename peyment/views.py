@@ -5,8 +5,20 @@ from product.models import Product
 from .models import Order, OrderItem
 from product.models import Product
 from shopping_basket.cart import Cart
+from rest_framework.generics import ListAPIView
+from .serializers import OrderSerializer
+from rest_framework.permissions import IsAuthenticated
+
 
 # Create your views here.
+
+
+class OrderView(ListAPIView):
+    serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        # Filter the queryset to show only orders of the authenticated user
+        return Order.objects.filter(user=self.request.user)
 
 
 def peyment(request, order_id):
@@ -49,6 +61,7 @@ def create_order(request):
         cart = Cart(request)
         # Create order
         order = Order.objects.create(
+            is_active=True,
             user=request.user,  # Assuming you have authentication
             status="checkout",  # Set the appropriate status
             is_paid=False,
@@ -62,6 +75,7 @@ def create_order(request):
 
             # Create OrderItem
             order_item = OrderItem.objects.create(
+                is_active=True,
                 order=order,  # You will update this with the actual order instance
                 product=product,
                 quantity=quantity,
@@ -79,3 +93,5 @@ def create_order(request):
 
         # Redirect to the payment page
         return redirect(payment_page_url)
+    else:
+        return redirect("order-list")
