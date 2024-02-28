@@ -20,8 +20,8 @@ Product
                     <p class="card-text">{{product.description|safe}}</p>
                 </div>
                 <div class="card-footer">
-                    <!-- <small class="text-body-secondary"><a href="#" class="btn btn-info"></a></small> -->
-                    <!-- <hr> -->
+                    <small class="text-body-secondary"><a href="{% url 'product:product-details' product.pk %}" class="btn btn-info">Details</a></small>
+                    <hr>
                     <small class="text-body-secondary">in stock: {{product.stock}}</small>
                     <hr>
                     <small class="text-body-secondary">Price: {{product.price}}$</small>
