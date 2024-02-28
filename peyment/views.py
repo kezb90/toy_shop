@@ -15,6 +15,7 @@ from rest_framework.permissions import IsAuthenticated
 
 class OrderView(ListAPIView):
     serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         # Filter the queryset to show only orders of the authenticated user
