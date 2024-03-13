@@ -112,11 +112,11 @@ def comment_view(request, post_id):
 
         # Create a new Comment instance and save it to the database
         comment = Comment(
-            author=author, body=comment_text, post=Post.objects.get(id=post_id)
+            author=author, body=comment_text, post=Post.objects.get(id=post_id), is_active= True
         )
         comment.save()
 
         # Redirect to a success page or the same page with a success message
-        return redirect(reverse("post_detail", args=[post_id]))
+        return redirect(reverse("blog:post_detail", args=[post_id]))
     else:
-        return redirect(reverse("post_detail", args=[post_id]))
+        return redirect(reverse("blog:post_detail", args=[post_id]))
